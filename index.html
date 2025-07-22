@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS-Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>DS-Converter</h1>
+            <button id="toggle-theme">
+                <span id="theme-icon">🌙</span> Toggle Theme
+            </button>
+        </div>
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="ExpressionConverter.html" onclick="showPage('converter')">Expression Converter</a></li>
+                <li><a href="StackVisualizer.html" onclick="showPage('stack-visualizer')">Stack Visualizer</a></li>
+                <li><a href="about.html" onclick="showPage('enhanced-features')">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Expression Converter Section -->
+        <section id="converter" class="page">
+            <h2>Expression Converter</h2>
+            <p>Convert between stack-based expressions and perform various string operations.</p>
+            <form id="expression-form">
+                <div class="form-group">
+                    <label for="expression">Enter Expression:</label>
+                    <input type="text" id="expression" placeholder="Enter an expression">
+                </div>
+                <div class="form-group">
+                    <label for="operation">Choose Operation:</label>
+                    <select id="operation">
+                        <option value="infixToPostfix">Infix to Postfix</option>
+                        <option value="infixToPrefix">Infix to Prefix</option>
+                        <option value="prefixToPostfix">Prefix to Postfix</option>
+                        <option value="balancedParentheses">Balanced Parentheses Checker</option>
+                        <option value="reverseString">Reverse String</option>
+                        <option value="palindromeChecker">Palindrome Checker</option>
+                        <option value="evaluatePostfix">Evaluate Postfix</option>
+                    </select>
+                </div>
+                <button type="button" id="convert" class="primary-button">Convert</button>
+            </form>
+            <div id="result">
+                <h3>Result:</h3>
+                <p id="result-output" class="result-box">Your result will appear here...</p>
+            </div>
+        </section>
+
+        <!-- Stack Visualizer Section -->
+        <section id="stack-visualizer" class="page">
+            <h2>Stack Visualizer</h2>
+            <p>Perform and visualize stack operations in real-time.</p>
+            <div id="stack-container">
+                <div class="form-group">
+                    <input type="text" id="stack-input" placeholder="Enter value to push">
+                </div>
+                <div class="button-group">
+                    <button id="push" class="secondary-button">Push</button>
+                    <button id="pop" class="secondary-button">Pop</button>
+                    <button id="peek" class="secondary-button">Peek</button>
+                </div>
+                <ul id="stack-view" class="stack-view"></ul>
+            </div>
+        </section>
+
+       <!-- String Operations Section -->
+<section id="string-operations" class="page">
+    <h2>String Operations</h2>
+    <p>Perform additional string manipulations using stack-based methods.</p>
+
+    <div class="form-group">
+        <label for="string-input">Enter String:</label>
+        <input type="text" id="string-input" placeholder="Enter a string">
+    </div>
+
+    <div class="button-group">
+        <button id="reverse-string" class="secondary-button">Reverse String</button>
+        <button id="check-palindrome" class="secondary-button">Check Palindrome</button>
+    </div>
+
+    <div id="string-result">
+        <h3>String Operation Result:</h3>
+        <p id="string-output" class="result-box">Your string result will appear here...</p>
+    </div>
+</section>
+
+<!-- Expression Operations Section -->
+<section id="expression-operations" class="page">
+    <h2>Expression Operations</h2>
+    <p>Check balanced parentheses and evaluate postfix expressions using stack-based methods.</p>
+
+    <div class="form-group">
+        <label for="expression-input">Enter Expression:</label>
+        <input type="text" id="expression-input" placeholder="Enter an expression">
+    </div>
+
+    <div class="button-group">
+        <button id="check-parentheses" class="secondary-button">Check Balanced Parentheses</button>
+        <button id="evaluate-expression" class="secondary-button">Evaluate Postfix Expression</button>
+    </div>
+
+    <div id="expression-result">
+        <h3>Expression Operation Result:</h3>
+        <p id="expression-output" class="result-box">Your expression result will appear here...</p>
+    </div>
+</section>
+
+<script>
+    // String Operations
+    document.getElementById('reverse-string').addEventListener('click', function () {
+        const input = document.getElementById('string-input').value;
+        const result = reverseString(input); // Call the JS function
+        document.getElementById('string-output').textContent = `Reversed String: ${result}`;
+    });
+
+    document.getElementById('check-palindrome').addEventListener('click', function () {
+        const input = document.getElementById('string-input').value;
+        const result = isPalindrome(input) ? "Yes, it's a palindrome." : "No, it's not a palindrome.";
+        document.getElementById('string-output').textContent = `Palindrome Check: ${result}`;
+    });
+
+    // Expression Operations
+    document.getElementById('check-parentheses').addEventListener('click', function () {
+        const input = document.getElementById('expression-input').value;
+        const result = balancedParentheses(input) ? "Yes, the parentheses are balanced." : "No, the parentheses are not balanced.";
+        document.getElementById('expression-output').textContent = `Balanced Parentheses Check: ${result}`;
+    });
+
+    document.getElementById('evaluate-expression').addEventListener('click', function () {
+        const input = document.getElementById('expression-input').value;
+        try {
+            const result = evaluatePostfix(input); // Call the JS function
+            document.getElementById('expression-output').textContent = `Postfix Evaluation Result: ${result}`;
+        } catch (error) {
+            document.getElementById('expression-output').textContent = `Error: ${error.message}`;
+        }
+    });
+</script>
+
+
+        <!-- Enhanced Features Section -->
+        <section id="enhanced-features" class="page">
+            <h2>Enhanced Features</h2>
+            <p>Explore advanced features and tools.</p>
+            <ul>
+                <li><strong>Dynamic Input Interface:</strong> Easily input and test expressions.</li>
+                <li><strong>Error Handling:</strong> Get feedback on invalid inputs or errors.</li>
+                <li><strong>Step-by-Step Viewer:</strong> Understand operations step by step.</li>
+                <li><strong>Export Results:</strong> Save results as a downloadable file.</li>
+            </ul>
+        </section>
+
+        <!-- Expression Converter Pages -->
+        <section id="infix-to-postfix" class="page" style="display: none;">
+            <h2>Understanding Infix to Postfix Conversion</h2>
+            <p>In infix notation, operators are placed between operands, and parentheses are used for precedence. In postfix notation, operators follow the operands.</p>
+            <p>Postfix notation eliminates the need for parentheses.</p>
+            <h3>Step-by-Step Conversion:</h3>
+            <ul>
+                <li>Step 1: Read the expression left to right.</li>
+                <li>Step 2: Use a stack to store operators and operands.</li>
+                <li>Step 3: Apply operator precedence.</li>
+                <li>Step 4: The result will be a postfix expression.</li>
+            </ul>
+            <h3>Example:</h3>
+            <p>Convert: <strong>(A + B) * C</strong></p>
+            <p>Infix to Postfix: <strong>AB+C*</strong></p>
+            <h3>Code Snippet:</h3>
+            <pre><code class="language-javascript">
+function infixToPostfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+        </section>
+
+        <section id="postfix-to-infix" class="page" style="display: none;">
+            <h2>Understanding Postfix to Infix Conversion</h2>
+            <p>Postfix notation places operators after operands. To convert to infix, we must process the expression from left to right using a stack.</p>
+            <h3>Step-by-Step Conversion:</h3>
+            <ul>
+                <li>Step 1: Read the expression from left to right.</li>
+                <li>Step 2: Use a stack to manage operands and operators.</li>
+                <li>Step 3: Rebuild the infix expression with correct parentheses.</li>
+                <li>Step 4: The result will be an infix expression.</li>
+            </ul>
+            <h3>Example:</h3>
+            <p>Convert: <strong>AB+C*</strong></p>
+            <p>Postfix to Infix: <strong>(A + B) * C</strong></p>
+            <h3>Code Snippet:</h3>
+            <pre><code class="language-javascript">
+function postfixToInfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+        </section>
+
+        <section id="prefix-to-infix" class="page" style="display: none;">
+            <h2>Understanding Prefix to Infix Conversion</h2>
+            <p>Prefix notation has operators before operands. Converting to infix requires handling the order of operations using a stack.</p>
+            <h3>Step-by-Step Conversion:</h3>
+            <ul>
+                <li>Step 1: Read the expression from right to left.</li>
+                <li>Step 2: Use a stack to manage operators and operands.</li>
+                <li>Step 3: Rebuild the infix expression with correct parentheses.</li>
+                <li>Step 4: The result will be an infix expression.</li>
+            </ul>
+            <h3>Example:</h3>
+            <p>Convert: <strong>* + AB C</strong></p>
+            <p>Prefix to Infix: <strong>(A + B) * C</strong></p>
+            <h3>Code Snippet:</h3>
+            <pre><code class="language-javascript">
+function prefixToInfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 DS-Converter. All Rights Reserved.<br>
+                Made with ❤️ by Prem, Parth, Harshal, Nilesh...
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript to toggle visibility of sections
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.style.display = 'none');
+            
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.style.display = 'block';
+            }
+        }
+
+        // Default page to show
+        window.onload = () => showPage('converter'); // Show "Expression Converter" by default
+
+        // JavaScript for theme toggle functionality
+        const toggleButton = document.getElementById('toggle-theme');
+        const themeIcon = document.getElementById('theme-icon');
+
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '🌞'; // Sun icon for light mode
+            } else {
+                themeIcon.textContent = '🌙'; // Moon icon for dark mode
+            }
+        });
+    </script>
+</body>
+</html>

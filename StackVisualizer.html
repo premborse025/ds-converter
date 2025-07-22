@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li><a href="index.html" onclick="showPage('HOME')">HOME</a></li>
+    </ul>
+</nav>
+
+    <main class="container">
+        <!-- Stack Visualizer Section -->
+        <section id="stack-visualizer" class="page">
+            <h2>Stack Visualizer</h2>
+            <p>The stack is a linear data structure that follows the Last In First Out (LIFO) principle. It means that the last element inserted into the stack is the first to be removed.</p>
+            <p>This visualizer will help you perform and visualize stack operations like push, pop, and peek in real-time.</p>
+            
+            <div id="stack-container">
+                <!-- Input to Push into Stack -->
+                <div class="form-group">
+                    <label for="stack-input">Enter value to push:</label>
+                    <input type="text" id="stack-input" placeholder="Enter a value">
+                </div>
+
+                <!-- Buttons for Stack Operations -->
+                <div class="button-group">
+                    <button id="push" class="secondary-button">Push</button>
+                    <button id="pop" class="secondary-button">Pop</button>
+                    <button id="peek" class="secondary-button">Peek</button>
+                </div>
+
+                <!-- Displaying the Stack -->
+                <div id="stack-display">
+                    <h3>Stack:</h3>
+                    <ul id="stack-view" class="stack-view"></ul>
+                </div>
+
+                <!-- Stack Operation Result -->
+                <div id="operation-result">
+                    <h3>Result:</h3>
+                    <p id="result-output" class="result-box">Your result will appear here...</p>
+                </div>
+            </div>
+
+            <h3>Stack Operations Explanation</h3>
+            <p>Here is a brief explanation of each operation:</p>
+            <ul>
+                <li><strong>Push:</strong> Adds an item to the top of the stack.</li>
+                <li><strong>Pop:</strong> Removes the item from the top of the stack and displays it as the result.</li>
+                <li><strong>Peek:</strong> Displays the item at the top of the stack without removing it.</li>
+            </ul>
+            
+            <h3>Example:</h3>
+            <p>Initial stack: <strong>[]</strong></p>
+            <p>Push: <strong>5</strong> → Stack becomes: <strong>[5]</strong></p>
+            <p>Push: <strong>10</strong> → Stack becomes: <strong>[5, 10]</strong></p>
+            <p>Pop: <strong>10</strong> → Stack becomes: <strong>[5]</strong></p>
+            <p>Peek: <strong>5</strong> → Top item is 5 (no removal)</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Stack Visualizer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="Script1.js"></script>
+    <script>
+        // Stack Visualization JavaScript
+
+        let stack = []; // Initialize an empty stack
+
+        // Select HTML elements
+        const stackInput = document.getElementById("stack-input");
+        const stackView = document.getElementById("stack-view");
+        const resultOutput = document.getElementById("result-output");
+
+        // Push operation
+        document.getElementById("push").addEventListener("click", function() {
+            const value = stackInput.value.trim();
+            if (value) {
+                stack.push(value); // Push value onto the stack
+                updateStackView(); // Update stack visualization
+                resultOutput.textContent = `Pushed: ${value}`;
+                stackInput.value = ''; // Clear input field
+            } else {
+                resultOutput.textContent = "Please enter a value to push.";
+            }
+        });
+
+        // Pop operation
+        document.getElementById("pop").addEventListener("click", function() {
+            if (stack.length > 0) {
+                const poppedValue = stack.pop(); // Remove value from the stack
+                updateStackView(); // Update stack visualization
+                resultOutput.textContent = `Popped: ${poppedValue}`;
+            } else {
+                resultOutput.textContent = "Stack is empty. Nothing to pop.";
+            }
+        });
+
+        // Peek operation
+        document.getElementById("peek").addEventListener("click", function() {
+            if (stack.length > 0) {
+                resultOutput.textContent = `Top item: ${stack[stack.length - 1]}`;
+            } else {
+                resultOutput.textContent = "Stack is empty.";
+            }
+        });
+
+        // Update the stack view on the page
+        function updateStackView() {
+            stackView.innerHTML = ''; // Clear current stack view
+            stack.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                stackView.appendChild(li); // Add each item as a list element
+            });
+        }
+
+        // Default page load actions
+        window.onload = () => updateStackView(); // Display empty stack on load
+    </script>
+</body>
+</html>

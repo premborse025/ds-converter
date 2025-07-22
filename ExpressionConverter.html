@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expression Converter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Expression Converter</h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showPage('infix-to-postfix')">Infix to Postfix</a></li>
+        <li><a href="#" onclick="showPage('postfix-to-infix')">Postfix to Infix</a></li>
+        <li><a href="#" onclick="showPage('prefix-to-infix')">Prefix to Infix</a></li>
+        <li><a href="index.html" onclick="showPage('HOME')">HOME</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Infix to Postfix Section -->
+    <section id="infix-to-postfix" class="page">
+      <h2>Understanding Infix to Postfix Conversion</h2>
+      <p>In infix notation, operators are placed between operands, and parentheses are used for precedence. In postfix notation, operators follow the operands.</p>
+      <p>Postfix notation eliminates the need for parentheses.</p>
+
+      <h3>Step-by-Step Conversion:</h3>
+      <ul>
+        <li>Step 1: Read the expression left to right.</li>
+        <li>Step 2: Use a stack to store operators and operands.</li>
+        <li>Step 3: Apply operator precedence.</li>
+        <li>Step 4: The result will be a postfix expression.</li>
+      </ul>
+
+      <h3>Example:</h3>
+      <p>Convert: <strong>(A + B) * C</strong></p>
+      <p>Infix to Postfix: <strong>AB+C*</strong></p>
+
+      <h3>Code Snippet:</h3>
+      <pre><code class="language-javascript">
+function infixToPostfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+    </section>
+
+    <!-- Postfix to Infix Section -->
+    <section id="postfix-to-infix" class="page" style="display: none;">
+      <h2>Understanding Postfix to Infix Conversion</h2>
+      <p>Postfix notation places operators after operands. To convert to infix, we must process the expression from left to right using a stack.</p>
+
+      <h3>Step-by-Step Conversion:</h3>
+      <ul>
+        <li>Step 1: Read the expression from left to right.</li>
+        <li>Step 2: Use a stack to manage operands and operators.</li>
+        <li>Step 3: Rebuild the infix expression with correct parentheses.</li>
+        <li>Step 4: The result will be an infix expression.</li>
+      </ul>
+
+      <h3>Example:</h3>
+      <p>Convert: <strong>AB+C*</strong></p>
+      <p>Postfix to Infix: <strong>(A + B) * C</strong></p>
+
+      <h3>Code Snippet:</h3>
+      <pre><code class="language-javascript">
+function postfixToInfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+    </section>
+
+    <!-- Prefix to Infix Section -->
+    <section id="prefix-to-infix" class="page" style="display: none;">
+      <h2>Understanding Prefix to Infix Conversion</h2>
+      <p>Prefix notation has operators before operands. Converting to infix requires handling the order of operations using a stack.</p>
+
+      <h3>Step-by-Step Conversion:</h3>
+      <ul>
+        <li>Step 1: Read the expression from right to left.</li>
+        <li>Step 2: Use a stack to manage operators and operands.</li>
+        <li>Step 3: Rebuild the infix expression with correct parentheses.</li>
+        <li>Step 4: The result will be an infix expression.</li>
+      </ul>
+
+      <h3>Example:</h3>
+      <p>Convert: <strong>* + AB C</strong></p>
+      <p>Prefix to Infix: <strong>(A + B) * C</strong></p>
+
+      <h3>Code Snippet:</h3>
+      <pre><code class="language-javascript">
+function prefixToInfix(expression) {
+  // Stack-based conversion logic
+}
+</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Expression Converter Project</p>
+  </footer>
+
+  <script>
+    // JavaScript to toggle visibility of sections
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.style.display = 'none');
+      
+      // Show the selected page
+      const selectedPage = document.getElementById(pageId);
+      if (selectedPage) {
+        selectedPage.style.display = 'block';
+      }
+    }
+
+    // Default page to show
+    window.onload = () => showPage('infix-to-postfix'); // Show "Infix to Postfix" by default
+  </script>
+</body>
+</html>
